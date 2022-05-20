@@ -6,4 +6,6 @@
 
 ## 2022-5-20
 ### 데이터셋 찾아보기
-[악기 소리 데이터](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
+[악기 소리 데이터1](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
+[악기 소리 데이터2](https://github.com/ejhumphrey/minst-dataset)
+[악기 소리 데이터3](https://www.upf.edu/web/mtg/irmas)
