@@ -37,3 +37,7 @@
 [악기 소리 데이터3](https://www.kaggle.com/datasets/imsparsh/musicnet-dataset)
 
 [필하모니아 사운드 데이터셋](https://philharmonia.co.uk/resources/sound-samples/)
+
+[IRMAS : 10가지 악기 소리와 음성 데이터셋](https://www.upf.edu/web/mtg/irmas)
+
+[Google Magenta : NSynth 악기 소리와 음성 데이터셋](https://magenta.tensorflow.org/datasets/nsynth#files)
