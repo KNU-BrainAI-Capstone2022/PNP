@@ -16,6 +16,14 @@
 
 [music instrument classifier](https://github.com/IvyZX/music-instrument-classifier)
 
+### 활용 사례
+
+[동시에 소리 3개 구분하는 '인공지능 귀'나왔다 -동아사이언스2021.8](https://m.dongascience.com/news.php?idx=48401&sns=kt)
+
+[인공지능, 이제는 합주 영상 속 악기 소리까지 구분해낸다 -visla매거진2018.7](https://visla.kr/news/etc/77735/)
+
+[AI기술로 음원만 있으면 악보 '뚝딱' -Ai타임스2021.10](http://www.aitimes.com/news/articleView.html?idxno=140852)
+
 ## 코드 [Colab](https://colab.research.google.com/drive/1JC5bNd51gg72giEjvZxEVgNY_d5Zm6Vb?usp=sharing)
 
 ## 2022-5-20
