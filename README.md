@@ -22,6 +22,8 @@
 
 [Open MIC 2018](https://paperswithcode.com/dataset/openmic-2018)
 
+[An Attention Mechanism for Musical Instrument](https://paperswithcode.com/paper/an-attention-mechanism-for-musical-instrument)
+
 ### 관련 Github
 
 [music instrument classifier](https://github.com/IvyZX/music-instrument-classifier)
