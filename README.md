@@ -34,6 +34,8 @@
 
 ## 코드 [Colab](https://colab.research.google.com/drive/1JC5bNd51gg72giEjvZxEVgNY_d5Zm6Vb?usp=sharing)
 
+[Dataset 예제 코드](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
+
 ### 데이터셋 찾아보기
 [악기 소리 데이터1](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
 
