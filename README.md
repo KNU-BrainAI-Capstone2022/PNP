@@ -32,7 +32,11 @@
 
 [AI기술로 음원만 있으면 악보 '뚝딱' -Ai타임스2021.10](http://www.aitimes.com/news/articleView.html?idxno=140852)
 
-## 코드 [Colab](https://colab.research.google.com/drive/1JC5bNd51gg72giEjvZxEVgNY_d5Zm6Vb?usp=sharing)
+## 코드 
+
+[Colab](https://colab.research.google.com/drive/1JC5bNd51gg72giEjvZxEVgNY_d5Zm6Vb?usp=sharing)
+
+[Colab2](https://colab.research.google.com/drive/1G8YNHNouyku17XPenuttguYwtgApqEqv?usp=sharing)
 
 [Dataset 예제 코드](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
 
