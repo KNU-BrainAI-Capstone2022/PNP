@@ -46,3 +46,5 @@
 [IRMAS : 10가지 악기 소리와 음성 데이터셋](https://www.upf.edu/web/mtg/irmas)
 
 [Google Magenta : NSynth 악기 소리와 음성 데이터셋](https://magenta.tensorflow.org/datasets/nsynth#files)
+
+[Open Mic 2018 Github](https://github.com/cosmir/openmic-2018)
