@@ -14,6 +14,8 @@
 
 [딥러닝 음향 분류 Urban-sound-classifier](https://velog.io/@seaworld0125/%EB%94%A5%EB%9F%AC%EB%8B%9D-CNN-%EC%9D%8C%ED%96%A5%EB%B6%84%EB%A5%98)
 
+[MIL 설명](https://koreapy.tistory.com/127)
+
 ### 관련 논문
 
 [Augmentation Methods on Monophonic Audio for Instrument Classification in Polyphonic Music](https://paperswithcode.com/paper/augmentation-methods-on-monophonic-audio-for)
