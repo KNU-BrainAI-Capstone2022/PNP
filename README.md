@@ -1,7 +1,9 @@
 # PNP
-## 2022-5-19
+
 ## 참고문헌
+
 ### 데이터 전처리
+
 [오디오 데이터 전처리](https://hyunlee103.tistory.com/54)
 
 [파이썬으로 음성파일 특징 추출](https://intrepidgeeks.com/tutorial/method-of-extracting-audio-file-features-using-python)
@@ -32,7 +34,6 @@
 
 ## 코드 [Colab](https://colab.research.google.com/drive/1JC5bNd51gg72giEjvZxEVgNY_d5Zm6Vb?usp=sharing)
 
-## 2022-5-20
 ### 데이터셋 찾아보기
 [악기 소리 데이터1](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
 
