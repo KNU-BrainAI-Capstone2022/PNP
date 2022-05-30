@@ -60,3 +60,7 @@
 [Google Magenta : NSynth 악기 소리와 음성 데이터셋](https://magenta.tensorflow.org/datasets/nsynth#files)
 
 [Open Mic 2018 Github](https://github.com/cosmir/openmic-2018)
+
+[MusicNet](https://github.com/jthickstun/pytorch_musicnet)
+
+[기타 데이터셋](https://paperswithcode.com/datasets?q=instrument&v=lst&o=match&mod=audio&page=1)
