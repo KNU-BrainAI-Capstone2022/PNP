@@ -44,7 +44,11 @@
 
 [Colab2](https://colab.research.google.com/drive/1G8YNHNouyku17XPenuttguYwtgApqEqv?usp=sharing)
 
-[Dataset 예제 코드](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
+[Colab3 dataset test](https://colab.research.google.com/drive/1XqoNlaOIdxnhdYXTaC7FO2jSu_XBJitm?usp=sharing)
+
+[Dataset openMIC-2028](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
+
+[Dataset ISMAR](https://github.com/vntkumar8/musical-instrument-classification)
 
 ### 데이터셋 찾아보기
 [악기 소리 데이터1](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
