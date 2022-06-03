@@ -65,6 +65,6 @@
 
 [Open Mic 2018 Github](https://github.com/cosmir/openmic-2018)
 
-[MusicNet](https://github.com/jthickstun/pytorch_musicnet)
+[MusicNet]([https://github.com/jthickstun/pytorch_musicnet](https://paperswithcode.com/dataset/musicnet))
 
 [기타 데이터셋](https://paperswithcode.com/datasets?q=instrument&v=lst&o=match&mod=audio&page=1)
