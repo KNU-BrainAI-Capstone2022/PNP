@@ -50,6 +50,8 @@
 
 [Dataset ISMAR](https://github.com/vntkumar8/musical-instrument-classification)
 
+[Musicnet](https://github.com/jthickstun/pytorch_musicnet)
+
 ### 데이터셋 찾아보기
 [악기 소리 데이터1](https://www.kaggle.com/datasets/mayur1999/wavfiles-of-instruments-audio?select=10Bass.wav)
 
@@ -65,6 +67,6 @@
 
 [Open Mic 2018 Github](https://github.com/cosmir/openmic-2018)
 
-[MusicNet]([https://github.com/jthickstun/pytorch_musicnet](https://paperswithcode.com/dataset/musicnet))
+[MusicNet](https://paperswithcode.com/dataset/musicnet)
 
 [기타 데이터셋](https://paperswithcode.com/datasets?q=instrument&v=lst&o=match&mod=audio&page=1)
