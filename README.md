@@ -46,6 +46,10 @@
 
 [Colab3 dataset test](https://colab.research.google.com/drive/1XqoNlaOIdxnhdYXTaC7FO2jSu_XBJitm?usp=sharing)
 
+[Colab 4](https://colab.research.google.com/drive/1PfAa85z65MihiMd__IPQWPHUmQWl3BJR?usp=sharing)
+
+github코드
+
 [Dataset openMIC-2028](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
 
 [Dataset ISMAR](https://github.com/vntkumar8/musical-instrument-classification)
