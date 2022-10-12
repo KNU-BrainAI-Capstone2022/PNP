@@ -50,6 +50,8 @@
 
 [youtube data](https://colab.research.google.com/drive/1-0BOmkr9VZHyJSUCOpud5OOen9TBMiLO?usp=sharing)
 
+[[2학기] sound file augmentation test](https://colab.research.google.com/drive/1eyfEfO4iEz4UfhcLVZ9OwMQLwqC4yK1z?usp=sharing)
+
 -- github코드 --
 
 [Dataset openMIC-2028](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
