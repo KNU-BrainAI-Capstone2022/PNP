@@ -52,6 +52,8 @@
 
 [[2학기] sound file augmentation test](https://colab.research.google.com/drive/1eyfEfO4iEz4UfhcLVZ9OwMQLwqC4yK1z?usp=sharing)
 
+[[2학기] MAESTB](https://colab.research.google.com/drive/1ajIfuxWxtUwmJ2GtPcntWk--5RfBS8UB?usp=sharing)
+
 -- github코드 --
 
 [Dataset openMIC-2028](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
