@@ -29,7 +29,7 @@ class maestraDataset(torch.utils.data.Dataset):
         with open(self.file, "rb") as f:
             pkl_data = pickle.load(f)
         # train과 test를 나눌 인덱스 정의
-        split_idx = pkl_data.index[pkl_data['audio_file'] == '1130-048.wav']
+        split_idx = pkl_data.index[pkl_data['audio_file'] == '2000-000.wav']
         # train, test 여부에 따라 파일명(ex:1000-000.wav), 라벨 목록(ex:[0,1,0,0])을 순서대로 리스트에 할당
         if self.train:
             self.labels = np.array(pkl_data.loc[:split_idx[0] - 1, label_lst].values.tolist())
