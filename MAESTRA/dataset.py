@@ -24,12 +24,12 @@ class maestraDataset(torch.utils.data.Dataset):
         self.file = './MAESTRA_data.pkl'
         self.data = np.array([])
         # 라벨 리스트 정의
-        label_lst = ['cello', 'piano']
+        label_lst = ['cello', 'clarinet', 'drum', 'flute', 'piano', 'viola', 'violin']
         # 데이터 프레임 불러오기
         with open(self.file, "rb") as f:
             pkl_data = pickle.load(f)
         # train과 test를 나눌 인덱스 정의
-        split_idx = pkl_data.index[pkl_data['audio_file'] == '2000-000.wav']
+        split_idx = pkl_data.index[pkl_data['audio_file'] == '1130-000.wav']
         # train, test 여부에 따라 파일명(ex:1000-000.wav), 라벨 목록(ex:[0,1,0,0])을 순서대로 리스트에 할당
         if self.train:
             self.labels = np.array(pkl_data.loc[:split_idx[0] - 1, label_lst].values.tolist())
@@ -37,6 +37,7 @@ class maestraDataset(torch.utils.data.Dataset):
         else:
             self.labels = np.array(pkl_data.loc[split_idx[0]:, label_lst].values.tolist())
             self.audio_path = pkl_data.loc[split_idx[0]:, 'audio_file'].values.tolist()
+        self.data = np.zeros((1, 336, 431))
         """
         print(str(self.labels.shape[0]) + 'dataset feature being extracted..')
         dur = 1
@@ -56,8 +57,9 @@ class maestraDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         # 오디오 데이터의 특성을 추출해서 변환 후 저장
+        self.data = np.array([])
         self.data = np.append(self.data, feature.f_cqt('./MAESTRA_dataset/' + self.audio_path[idx]))
-        data = self.data
+        data = self.data.reshape((1, 336, 431))
 
         if self.transform is not None:
             data = self.transform(data)
