@@ -14,51 +14,38 @@ import feature
 
 # 데이터셋을 만들기 위한 파일 (d:dataset)
 class maestraDataset(torch.utils.data.Dataset):
-    def __init__(self, train=True, transform=None):
+    def __init__(self, root, purpose='train', transform=None):
         """
-        :param train: True->훈련 데이터셋, False->테스트 데이터셋
+        :param root: train/val/test wav파일이 있는 폴더 경로 (ex:./MAESTRA_dataset/)
+        :param purpose: train->훈련용 데이터셋, val->검증용 데이터셋, test->테스트 데이터셋
         :param transform: Data augmentation 커스텀
         """
-        self.train = train
+        self.root = root
+        self.purpose = purpose
         self.transform = transform
-        self.file = './MAESTRA_data.pkl'
+        self.file = './MAESTRA_' + self.purpose + '.pkl'
         self.data = np.array([])
+
         # 라벨 리스트 정의
         label_lst = ['cello', 'clarinet', 'drum', 'flute', 'piano', 'viola', 'violin']
+
         # 데이터 프레임 불러오기
         with open(self.file, "rb") as f:
             pkl_data = pickle.load(f)
-        # train과 test를 나눌 인덱스 정의
-        split_idx = pkl_data.index[pkl_data['audio_file'] == '1130-000.wav']
-        # train, test 여부에 따라 파일명(ex:1000-000.wav), 라벨 목록(ex:[0,1,0,0])을 순서대로 리스트에 할당
-        if self.train:
-            self.labels = np.array(pkl_data.loc[:split_idx[0] - 1, label_lst].values.tolist())
-            self.audio_path = pkl_data.loc[:split_idx[0] - 1, 'audio_file'].values.tolist()
-        else:
-            self.labels = np.array(pkl_data.loc[split_idx[0]:, label_lst].values.tolist())
-            self.audio_path = pkl_data.loc[split_idx[0]:, 'audio_file'].values.tolist()
-        self.data = np.zeros((1, 336, 431))
-        """
-        print(str(self.labels.shape[0]) + 'dataset feature being extracted..')
-        dur = 1
-        # 모든 오디오 데이터의 특성을 추출해서 변환 후 저장
-        for path in self.audio_path:
-            self.data = np.append(self.data, feature.f_cqt('./MAESTRA_dataset/' + path))
-            # 50번째 마다 진행 상황을 출력
-            if dur % 50 == 0:
-                print(str(dur) + '/' + str(self.labels.shape[0]))
-            dur += 1
-        # 데이터 크기를 모델 입력 크기에 맞게 재설정
-        self.data = self.data.reshape((self.labels.shape[0], 1, 168, 431))
-        print('All data feature extraction complete')
-        """
+
+        # train, val, test 여부에 따라 파일명(ex:1000-000.wav), 라벨 목록(ex:[0,1,0,0])을 순서대로 리스트에 할당
+        self.labels = np.array(pkl_data.loc[:, label_lst].values.tolist())
+        self.audio_path = pkl_data.loc[:, 'audio_file'].values.tolist()
+
+        self.length = len(self.labels[0])
+
     def __len__(self):
-        return len(self.data)
+        return self.length
 
     def __getitem__(self, idx):
         # 오디오 데이터의 특성을 추출해서 변환 후 저장
         self.data = np.array([])
-        self.data = np.append(self.data, feature.f_cqt('./MAESTRA_dataset/' + self.audio_path[idx]))
+        self.data = np.append(self.data, feature.f_cqt(self.root + self.audio_path[idx]))
         data = self.data.reshape((1, 336, 431))
 
         if self.transform is not None:
@@ -120,8 +107,11 @@ def d_extract(re_extract=False, audio_len=10):
 
 
 def d_create_df(audio_len=10):
+
     metadata = pd.read_excel('./metadata.xlsx', sheet_name=0)
-    data_lst = []
+    train_data_lst = []
+    val_data_lst = []
+    test_data_lst = []
     mlb = MultiLabelBinarizer()
 
     for index, row in metadata.iterrows():
@@ -129,22 +119,54 @@ def d_create_df(audio_len=10):
         if str(row["url"]) == 'nan':
             break
 
-        ensemble, id, start, end = str(row["ensemble"]), str(row["id"]), int(row["start"]), int(row["end"])
+        ensemble, id, start, end, val_test = \
+            str(row["ensemble"]), str(row["id"]), int(row["start"]), int(row["end"]), str(row["val/test"])
+
         n = int((end - start) / audio_len)
+
         # 각 데이터셋의 [file name, label]을 리스트에 저장
+        labels = ensemble.split(' ')
+
         for num in range(0, n):
             audio_file = id + '-' + str(num).rjust(3, '0') + '.wav'
-            labels = ensemble.split(' ')
-            data_lst.append([audio_file, labels])
-    # file name과 labels를 열로 하는 데이터 프레임을 생성
-    data_df = pd.DataFrame(data_lst, columns=['audio_file', 'labels'])
-    # 모든 label 성분을 자동으로 분류하고, 각 label을 열로 하는 새 데이터 프레임 생성
-    labels = mlb.fit_transform(data_df['labels'].values)
-    new_data_df = pd.DataFrame(columns=mlb.classes_, data=labels)
-    new_data_df.insert(0, 'audio_file', data_df['audio_file'])
-    # 새 데이터 프레임을 csv파일과 pickle파일 형태로 저장
-    new_data_df.to_csv('./MAESTRA_data.csv')
-    new_data_df.to_pickle('./MAESTRA_data.pkl')
-    print(len(new_data_df), "개의 파일들의 데이터프레임이 완성되었습니다.")
 
-    return new_data_df
+            # train/validation/test용 데이터리스트를 각각 저장
+            if val_test == 'val':
+                val_data_lst.append([audio_file, labels])
+            elif val_test == 'test':
+                test_data_lst.append([audio_file, labels])
+            else:
+                train_data_lst.append([audio_file, labels])
+
+    # file name과 labels를 열로 하는 데이터 프레임을 생성
+    train_data_df = pd.DataFrame(train_data_lst, columns=['audio_file', 'labels'])
+    val_data_df = pd.DataFrame(val_data_lst, columns=['audio_file', 'labels'])
+    test_data_df = pd.DataFrame(test_data_lst, columns=['audio_file', 'labels'])
+
+    # 모든 label 성분을 자동으로 분류하고, 각 label을 열로 하는 새 데이터 프레임 생성
+    labels = mlb.fit_transform(train_data_df['labels'].values)
+    new_train_data_df = pd.DataFrame(columns=mlb.classes_, data=labels)
+    new_train_data_df.insert(0, 'audio_file', train_data_df['audio_file'])
+
+    labels = mlb.fit_transform(val_data_df['labels'].values)
+    new_val_data_df = pd.DataFrame(columns=mlb.classes_, data=labels)
+    new_val_data_df.insert(0, 'audio_file', val_data_df['audio_file'])
+
+    labels = mlb.fit_transform(test_data_df['labels'].values)
+    new_test_data_df = pd.DataFrame(columns=mlb.classes_, data=labels)
+    new_test_data_df.insert(0, 'audio_file', test_data_df['audio_file'])
+
+    # 새 데이터 프레임을 csv파일과 pickle파일 형태로 저장
+    new_train_data_df.to_csv('./MAESTRA_train.csv')
+    new_train_data_df.to_pickle('./MAESTRA_train.pkl')
+    print(len(new_train_data_df), "개의 파일들의 Train 데이터프레임이 완성되었습니다.")
+
+    new_val_data_df.to_csv('./MAESTRA_val.csv')
+    new_val_data_df.to_pickle('./MAESTRA_val.pkl')
+    print(len(new_val_data_df), "개의 파일들의 Validation 데이터프레임이 완성되었습니다.")
+
+    new_test_data_df.to_csv('./MAESTRA_test.csv')
+    new_test_data_df.to_pickle('./MAESTRA_test.pkl')
+    print(len(new_test_data_df), "개의 파일들의 Test 데이터프레임이 완성되었습니다.")
+
+    return new_train_data_df, new_val_data_df, new_test_data_df
