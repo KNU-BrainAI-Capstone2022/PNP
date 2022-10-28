@@ -37,7 +37,8 @@ class maestraDataset(torch.utils.data.Dataset):
         self.labels = np.array(pkl_data.loc[:, label_lst].values.tolist())
         self.audio_path = pkl_data.loc[:, 'audio_file'].values.tolist()
 
-        self.length = len(self.labels[0])
+        self.length = len(pkl_data)
+        print(purpose + ' 데이터 수: ' + str(self.length))
 
     def __len__(self):
         return self.length

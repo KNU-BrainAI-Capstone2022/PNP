@@ -72,12 +72,12 @@ def f_mfcc(file_name):
 def f_cqt(file_name):
     try:
         audio, _ = librosa.load(file_name, sr=sr)
-        print('-------Processing CQT-------' + file_name)
-        print('sr:', sr, ', audio shape:', audio.shape)
-        print('length:', audio.shape[0] / float(sr), 'secs')
+        # print('-------Processing CQT-------' + file_name)
+        # print('sr:', sr, ', audio shape:', audio.shape)
+        # print('length:', audio.shape[0] / float(sr), 'secs')
         cqt = librosa.cqt(y=audio, sr=sr, hop_length=hop_length, n_bins=12 * 4 * 7, bins_per_octave=12 * 4)
         cqt = librosa.amplitude_to_db(np.abs(cqt))
-        print('Shape before padding:', cqt.shape)
+        # print('Shape before padding:', cqt.shape)
         # pad_width = max_pad_len - cqt.shape[1]
         # if pad_width > 0:
         #     cqt = np.pad(cqt, pad_width=((0, 0), (0, pad_width)), mode="constant")
