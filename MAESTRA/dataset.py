@@ -45,8 +45,7 @@ class maestraDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, idx):
         # 오디오 데이터의 특성을 추출해서 변환 후 저장
-        self.data = np.array([])
-        self.data = np.append(self.data, feature.f_cqt(self.root + self.audio_path[idx]))
+        self.data = np.load('./data/cqt_' + self.purpose + '/' + self.audio_path[idx] + '.npy')
         data = self.data.reshape((1, 336, 431))
 
         if self.transform is not None:
@@ -171,3 +170,18 @@ def d_create_df(audio_len=10):
     print(len(new_test_data_df), "개의 파일들의 Test 데이터프레임이 완성되었습니다.")
 
     return new_train_data_df, new_val_data_df, new_test_data_df
+
+
+def d_create_npy(root, purpose):
+    data = np.array([])
+    file = './MAESTRA_' + purpose + '.pkl'
+
+    with open(file, "rb") as f:
+        pkl_data = pickle.load(f)
+
+    audio_path = pkl_data.loc[:, 'audio_file'].values.tolist()
+
+    for idx in audio_path:
+        data = np.array(feature.f_cqt(root + idx))
+        data = data.reshape((1, 336, 431))
+        np.save('./data/cqt_' + purpose + '/' + idx, data)

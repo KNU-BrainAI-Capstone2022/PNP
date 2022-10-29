@@ -111,12 +111,13 @@ class MAESTRA(nn.Module):
         )
 
         self.FCN = nn.Sequential(
-            nn.Linear(in_features=256 * 2 * 5, out_features=1),  # 2560->1
+            nn.Linear(in_features=256 * 2 * 5, out_features=1),  # 2560->1 원래 2*5
             nn.Sigmoid()
         )
 
     # __init__ 함수에서 선언한 layer들 연결해서 data propa flow 만들기
     def forward(self, x):
+
         layer1 = self.enc1_1(x)
         layer1 = self.enc1_2(layer1)
 
