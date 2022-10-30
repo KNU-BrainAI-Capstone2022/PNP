@@ -80,3 +80,5 @@
 [MusicNet](https://paperswithcode.com/dataset/musicnet)
 
 [기타 데이터셋](https://paperswithcode.com/datasets?q=instrument&v=lst&o=match&mod=audio&page=1)
+
+[[2학기] 자체 데이터셋 metadata](https://docs.google.com/spreadsheets/d/1moqewE_o9iac-Ca3kdcCx-jZq0Fi-ZY02Rv9eQn4PcY/edit#gid=0)
