@@ -73,7 +73,7 @@ def t_train(instrument, model, dataloader_dict, criterion, optimizer, num_epoch,
                 total += targets.size(0)
                 running_acc += (predicted == targets).sum().item()
 
-        val_epoch_loss = val_epoch_loss / len(dataloader_dict['val'])
+        val_epoch_loss = val_epoch_loss / len(dataloader_dict['val'].dataset)
         print('Val Loss: {:.6f}'.format(val_epoch_loss))
 
         accuracy = (100 * running_acc / total)
