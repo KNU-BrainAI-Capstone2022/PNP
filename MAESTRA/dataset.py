@@ -46,7 +46,7 @@ class maestraDataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         # 변환된 데이터를 불러오기
         self.data = np.load('./data/cqt_' + self.purpose + '/' + self.audio_path[idx] + '.npy')
-        data = self.data.reshape((1, 336, 431))
+        data = self.data.reshape((1, 168, 216))
 
         if self.transform is not None:
             data = self.transform(data)
@@ -216,5 +216,6 @@ def d_create_npy(root, purpose, re_create=False):
             continue
 
         data = np.array(feature.f_cqt(root + idx))
-        data = data.reshape((1, 336, 431))
+        data = data.reshape((1, 168, 216))
         np.save('./data/cqt_' + purpose + '/' + idx, data)
+        print(idx + ' completed')
