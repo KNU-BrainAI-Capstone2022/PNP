@@ -26,7 +26,7 @@ class MAESTRA(nn.Module):
             layers += [nn.Conv2d(in_channels=in_channels, out_channels=out_channels,
                                  kernel_size=kernel_size, stride=stride, padding=padding,
                                  bias=bias)]
-            # layers += [nn.BatchNorm2d(num_features=out_channels)]
+            layers += [nn.BatchNorm2d(num_features=out_channels)]
             layers += [nn.ReLU()]
 
             cbr = nn.Sequential(*layers)  # *으로 list unpacking
@@ -107,27 +107,27 @@ class MAESTRA(nn.Module):
 
         self.features = nn.Sequential(
             nn.Conv2d(in_channels=1, out_channels=16, kernel_size=3, padding=0),  # 160x208->158x206
-            # nn.BatchNorm2d(16),
+            nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),  # ->79x103
 
             nn.Conv2d(in_channels=16, out_channels=32, kernel_size=3, padding=0),  # ->77x101
-            # nn.BatchNorm2d(32),
+            nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),  # ->38x50
 
             nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=0),  # ->36x48
-            # nn.BatchNorm2d(64),
+            nn.BatchNorm2d(64),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),  # ->18x24
 
             nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=0),  # ->16x22
-            # nn.BatchNorm2d(128),
+            nn.BatchNorm2d(128),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),  # ->8x11
 
             nn.Conv2d(in_channels=128, out_channels=256, kernel_size=3, padding=0),  # ->6x9
-            # nn.BatchNorm2d(256),
+            nn.BatchNorm2d(256),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2)  # ->3x4
         )
@@ -138,7 +138,11 @@ class MAESTRA(nn.Module):
         )
 
         self.fc_new2 = nn.Sequential(
-            nn.Linear(in_features=33280, out_features=1),
+            nn.Linear(in_features=33280, out_features=2048),
+            nn.ReLU(),
+            nn.Linear(2048, 128),
+            nn.ReLU(),
+            nn.Linear(128, 1),
             nn.Sigmoid()
         )
 
@@ -226,6 +230,7 @@ class MAESTRA(nn.Module):
         out = self.features(out)
         out = torch.flatten(out, 1)
         out = self.fc_new(out)
+
         # out = self.fc1(out)
         # out = self.dropout(out)
         # out = self.fc2(out)
