@@ -54,6 +54,7 @@
 
 [[2학기] MAESTB](https://colab.research.google.com/drive/1ajIfuxWxtUwmJ2GtPcntWk--5RfBS8UB?usp=sharing)
 
+[[2학기] MAESTRA Test Code](https://colab.research.google.com/drive/1qhpKR9iOTDtjqQ-9Key686HISmBl9EWr?usp=sharing)
 -- github코드 --
 
 [Dataset openMIC-2028](https://github.com/cosmir/openmic-2018/blob/master/examples/modeling-baseline.ipynb) 
